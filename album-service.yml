@@ -12,19 +12,24 @@ eureka:
       defaultZone: http://${eureka.instance.hostname}:${eureka.instance.port}/eureka/
   server:
     wait-time-in-ms-when-sync-empty: 3000
+    
+spring.h2.console.enabled: true
+
 
 spring:
     datasource:
+        data: classpath:/sql/data.sql
         driver-class-name: com.mysql.jdbc.Driver
         password: '1234'
         platform: mysql
-        url: jdbc:mysql://localhost/delivery-order?verifyServerCertificate=false&useSSL=false&requireSSL=false
+        schema: classpath:/sql/schema.sql
+        url: jdbc:mysql://localhost/album-service?verifyServerCertificate=false&useSSL=false&requireSSL=false
         username: root
     jpa:
         database-platform: org.hibernate.dialect.MySQLDialect
         generate-ddl: false
         hibernate:
-            ddl-auto: create
+            ddl-auto: none
         show-sql: true
 
 authserver:
